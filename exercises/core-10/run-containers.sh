@@ -9,11 +9,22 @@ set -e # Exit immediately if a command exits with a non-zero status.
 # Image: postgres:14-alpine
 # Network: c10-network
 # Required ENV: POSTGRES_PASSWORD=mysecretpassword
+docker run \
+  --detach \
+  --name c10-db \
+  --network c10-network \
+  --env POSTGRES_PASSWORD=mysecretpassword \
+  postgres:14-alpine
 
 # TODO: Run the busybox container on the network.
 # Name: c10-app
 # Image: busybox
 # Network: c10-network
 # Command: sleep 3600
+docker run \
+  --detach \
+  --name c10-app \
+  --network c10-network \
+  busybox sleep 3600
 
 echo "Containers are starting..."
