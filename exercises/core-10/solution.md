@@ -4,7 +4,6 @@ $ docker network ls
 $ docker pull postgres:14-alpine
 $ docker pull busybox
 $ vim run-containers.sh
-...
 $ cat run-containers.sh
 ...
 docker run \
