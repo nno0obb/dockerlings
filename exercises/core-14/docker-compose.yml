@@ -1,0 +1,28 @@
+services:
+  web:
+    build: ./app
+    container_name: c14-web
+    ports:
+      - "8014:5000"
+    networks:
+      - c14-app-net
+    environment:
+      - REDIS_HOST=redis
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:alpine
+    container_name: c14-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - c14-app-net
+
+volumes:
+  redis-data:
+
+networks:
+  c14-app-net:
